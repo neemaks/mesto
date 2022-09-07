@@ -1,0 +1,10 @@
+.profile__edit-button {
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+  margin-top: 8px;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
+}
