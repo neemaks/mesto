@@ -1,0 +1,9 @@
+.element__photo {
+  max-width: 282px;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
