@@ -3,6 +3,10 @@
   max-height: 24px;
   object-fit: contain;
   margin-top: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
 }
 
 .profile__edit-button:hover {
