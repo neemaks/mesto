@@ -1,0 +1,19 @@
+.popup__imput {
+  width: 358px;
+  height: 33px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+@media screen and (max-width: 767px) {
+  .popup__imput {
+    width: 238px;
+  }
+}
