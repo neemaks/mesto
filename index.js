@@ -1,9 +1,10 @@
+// Объявляем попап, кнопки открытия, закрытия и субмит
 const popup = document.querySelector('.popup');
 const openButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-icon');
 const closeSubmit = document.querySelector('.popup__submit');
 
-// Открываем и закрваем Попап
+// Открываем и закрваем попап
 const togglePopup = () => {
   popup.classList.toggle('popup__opened');
 }
@@ -20,18 +21,18 @@ closeSubmit.addEventListener('click', () => {
   togglePopup();
 })
 
-// Находим форму в DOM
+// Находим форму
 const formElement = document.querySelector('.popup__form');
-// Находим поля формы в DOM
-const nameInput = document.querySelector('.popup__imput-name', 'жак');
+// Находим поля формы
+const nameInput = document.querySelector('.popup__imput-name',);
 const jobInput = document.querySelector('.popup__imput-profession');
-// Находим поля для замены
+// Находим поля для редактироания имени и профессии
 const titleName = document.querySelector('.profile__title');
 const titleJob = document.querySelector('.profile__subtitle');
 
 // Обработчик «отправки» формы
 function formSubmitHandler(evt) {
-  // Отменяем стандартную отправку формы.
+  // Отменяем стандартную отправку формы
   evt.preventDefault();
 
   // Получаем значение полей jobInput и nameInput из свойства value
@@ -39,7 +40,7 @@ function formSubmitHandler(evt) {
   const jobeValue = jobInput.value;
 
   // Выбираем и вставлям новые значения полей
-  titleName.textContent = nameValue; 
+  titleName.textContent = nameValue;
   titleJob.textContent = jobeValue;
 
 }
