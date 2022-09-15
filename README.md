@@ -19,7 +19,7 @@
 
 **Ссылка на страницу**
 
-* []
+* [https://neemaks.github.io/mesto/](https://neemaks.github.io/mesto/)
 
 **Планы по доработке проекта**
 
