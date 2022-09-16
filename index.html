@@ -71,23 +71,24 @@
         </div>
       </article>
     </section>
-
-    <section class="popup" aria-label="всплывающее окно">
-      <div class="popup__container">
-        <form class="popup__form">
-          <h2 class="popup__headline">Редактировать профиль</h2>
-          <input class="popup__imput popup__imput-name" type="text" value="Жак-Ив Кусто">
-          <input class="popup__imput popup__imput-profession" type="text" value="Исследователь океана">
-          <button class="popup__submit" type="submit">Сохранить</button>
-        </form>
-        <button class="popup__close-icon"></button>
-      </div>
-    </section>
-
   </main>
+
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup" aria-label="всплывающее окно">
+    <div class="popup__container">
+      <form name="edit-form" class="popup__form">
+        <h3 class="popup__headline">Редактировать профиль</h3>
+        <input class="popup-input popup-input_name" name="name" type="text" value="Жак-Ив Кусто">
+        <input class="popup-input popup-input_profession" name="job" type="text" value="Исследователь океана">
+        <button class="popup__submit" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-icon"></button>
+    </div>
+  </div>
+
   <script src="./index.js"></script>
 </body>
 

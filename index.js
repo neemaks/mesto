@@ -24,8 +24,8 @@ closeSubmit.addEventListener('click', () => {
 // Находим форму
 const formElement = document.querySelector('.popup__form');
 // Находим поля формы
-const nameInput = document.querySelector('.popup__imput-name');
-const jobInput = document.querySelector('.popup__imput-profession');
+const nameInput = document.querySelector('.popup-input_name');
+const jobInput = document.querySelector('.popup-input_profession');
 // Находим поля для редактироания имени и профессии
 const titleName = document.querySelector('.profile__title');
 const titleJob = document.querySelector('.profile__subtitle');
