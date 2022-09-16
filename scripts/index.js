@@ -6,7 +6,7 @@ const closeSubmit = document.querySelector('.popup__submit');
 
 // Открываем и закрваем попап
 const togglePopup = () => {
-  popup.classList.toggle('popup__opened');
+  popup.classList.toggle('popup_opened');
 }
 
 openButton.addEventListener('click', () => {
