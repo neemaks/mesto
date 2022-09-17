@@ -16,8 +16,7 @@ openButton.addEventListener('click', () => {
   togglePopup();
 })
 
-closeButton.addEventListener("click", togglePopup);
-
+closeButton.addEventListener('click', togglePopup);
 
 // Находим форму
 const formElement = document.querySelector('.popup__form');
@@ -45,7 +44,6 @@ function formSubmitHandler(evt) {
 // Заносим данные из профиля в форму при каждом открытии
 if (document.querySelector('.popup').classList.contains('popup_opened')) {
   togglePopup();
-  console.log('yes');
 } else {
   nameInput.value = titleName.textContent;
   jobInput.value = titleJob.textContent;
