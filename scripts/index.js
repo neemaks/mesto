@@ -1,10 +1,13 @@
-// Объявляем попап, кнопки открытия, закрытия и субмит
+// Находим попап и кнопки
 const popup = document.querySelector('.popup');
 const openButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-icon');
-const closeSubmit = document.querySelector('.popup__submit');
 
 // Открываем и закрваем попап
+openButton.addEventListener('click', () => {
+  openButton.classList.add('popup_opened');
+})
+
 const togglePopup = () => {
   popup.classList.toggle('popup_opened');
 }
@@ -13,13 +16,8 @@ openButton.addEventListener('click', () => {
   togglePopup();
 })
 
-closeButton.addEventListener('click', () => {
-  togglePopup();
-})
+closeButton.addEventListener("click", togglePopup);
 
-closeSubmit.addEventListener('click', () => {
-  togglePopup();
-})
 
 // Находим форму
 const formElement = document.querySelector('.popup__form');
@@ -42,9 +40,18 @@ function formSubmitHandler(evt) {
   // Выбираем и вставлям новые значения полей
   titleName.textContent = nameValue;
   titleJob.textContent = jobeValue;
+}
 
+// Заносим данные из профиля в форму при каждом открытии
+if (document.querySelector('.popup').classList.contains('popup_opened')) {
+  togglePopup();
+  console.log('yes');
+} else {
+  nameInput.value = titleName.textContent;
+  jobInput.value = titleJob.textContent;
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
+
