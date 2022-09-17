@@ -52,4 +52,3 @@ if (document.querySelector('.popup').classList.contains('popup_opened')) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-
