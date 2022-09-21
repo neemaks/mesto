@@ -3,26 +3,23 @@ const popup = document.querySelector('.popup');
 const openButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-icon');
 
-// Открываем и закрваем попап
-openButton.addEventListener('click', () => {
-  openButton.classList.add('popup_opened');
-})
-
+// Открываем и закрваем попап (заносим данные из профиля) 
 const togglePopup = () => {
+  if (!popup.classList.contains('popup_opened')) {
+    nameInput.value = titleName.textContent;
+    jobInput.value = titleJob.textContent;
+  }
   popup.classList.toggle('popup_opened');
 }
 
-openButton.addEventListener('click', () => {
-  togglePopup();
-})
-
+openButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
 
 // Находим форму
 const formElement = document.querySelector('.popup__form');
 // Находим поля формы
-const nameInput = document.querySelector('.popup-input_name');
-const jobInput = document.querySelector('.popup-input_profession');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
 // Находим поля для редактироания имени и профессии
 const titleName = document.querySelector('.profile__title');
 const titleJob = document.querySelector('.profile__subtitle');
@@ -39,14 +36,7 @@ function formSubmitHandler(evt) {
   // Выбираем и вставлям новые значения полей
   titleName.textContent = nameValue;
   titleJob.textContent = jobeValue;
-}
-
-// Заносим данные из профиля в форму при каждом открытии
-if (document.querySelector('.popup').classList.contains('popup_opened')) {
   togglePopup();
-} else {
-  nameInput.value = titleName.textContent;
-  jobInput.value = titleJob.textContent;
 }
 
 // Прикрепляем обработчик к форме:
