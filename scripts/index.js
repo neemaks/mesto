@@ -13,7 +13,15 @@ const togglePopup = () => {
 }
 
 openButton.addEventListener('click', togglePopup);
-closeButton.addEventListener('click', togglePopup);
+// Добовляем fade out animation на закрытие popup
+closeButton.addEventListener('click', () => {
+  popup.setAttribute("closing", "");
+
+  popup.addEventListener('animationend', () => {
+      popup.removeAttribute("closing");
+      togglePopup();
+  }, { once: true });
+});
 
 // Находим форму
 const formElement = document.querySelector('.popup__form');
@@ -36,7 +44,12 @@ function formSubmitHandler(evt) {
   // Выбираем и вставлям новые значения полей
   titleName.textContent = nameValue;
   titleJob.textContent = jobeValue;
-  togglePopup();
+  // Дублируем fade out animation на Submit закрытие
+    popup.setAttribute("closing", "");
+    popup.addEventListener('animationend', () => {
+        popup.removeAttribute("closing");
+        togglePopup();
+    }, { once: true });
 }
 
 // Прикрепляем обработчик к форме:
