@@ -5,4 +5,5 @@
   grid-template-rows: 1fr 1fr;
   background-color: #fff;
   border-radius: 10px 10px 10px 10px;
+  position: relative;
 }
