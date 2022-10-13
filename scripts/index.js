@@ -7,9 +7,9 @@ const closeButton = document.querySelector('.popup__close-icon');
 const togglePopup = () => {
   if (popup.classList.contains('popup_opened')) {
     jobInput.value = titleJob.textContent;
+    nameInput.value = titleName.textContent;
   }
   popup.classList.toggle('popup_opened');
-  nameInput.value = titleName.textContent;
 }
 
 openButton.addEventListener('click', togglePopup);
@@ -65,3 +65,28 @@ likeButton.addEventListener('click', () => {
 })
 
 likeButton.addEventListener('click', likeButton);
+
+// *SECTION CARD Находим карточки и кнопки
+const card = document.querySelector('.card');
+const cardOpenButton = document.querySelector('.profile__add-button');
+const cardCloseButton = document.querySelector('.card__close-icon');
+
+// *SECTION CARD Открываем и закрваем карточки (заносим данные из профиля) 
+const toggleCard = () => {
+  if (card.classList.contains('card_opened')) {
+    false;
+  }
+  card.classList.toggle('card_opened');
+}
+
+cardOpenButton.addEventListener('click', toggleCard);
+
+// *SECTION CARD Добовляем fade out animation на закрытие card
+cardCloseButton.addEventListener('click', () => {
+  card.setAttribute("closing", "");
+
+  card.addEventListener('animationend', () => {
+    card.removeAttribute("closing");
+    toggleCard();
+  }, { once: true });
+});
