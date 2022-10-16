@@ -1,40 +1,80 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 // *SECTION POPUP Находим попап и кнопки
 const popup = document.querySelector('.popup');
 const openButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-icon');
 
-// *SECTION POPUP Открываем и закрваем попап (заносим данные из профиля) 
-const togglePopup = () => {
-  if (popup.classList.contains('popup_opened')) {
-    jobInput.value = titleJob.textContent;
-    nameInput.value = titleName.textContent;
-  }
-  popup.classList.toggle('popup_opened');
-}
-
-openButton.addEventListener('click', togglePopup);
-
-// *SECTION POPUP Добовляем fade out animation на закрытие popup
-closeButton.addEventListener('click', () => {
-  popup.setAttribute("closing", "");
-
-  popup.addEventListener('animationend', () => {
-    popup.removeAttribute("closing");
-    togglePopup();
-  }, { once: true });
-});
-
 // *SECTION POPUP Находим форму
 const formElement = document.querySelector('.popup__form');
+
 // *SECTION POPUP Находим поля формы
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
+
 // *SECTION POPUP Находим поля для редактироания имени и профессии
 const titleName = document.querySelector('.profile__title');
 const titleJob = document.querySelector('.profile__subtitle');
 
+// *SECTION CARD Находим карточки и кнопки
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupCard = document.querySelector('.popup_type_card');
+const cardOpenButton = document.querySelector('.profile__add-button');
+const buttonCloseProfile = document.querySelector('.popup__close-icon_type_profile');
+const buttonCloseCard = document.querySelector('.popup__close-icon_type_card');
+
+// *SECTION ELEMENT Находим лайк
+const likeButton = document.querySelector('.element__like-button')
+
+
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened')
+  if (popup === popupProfile) {
+    addPopupText()
+  }
+}
+
+const addPopupText = () => {
+  nameInput.value = titleName.textContent;
+  jobInput.value = titleJob.textContent;
+}
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened')
+}
+
+
+
+
+
 // *SECTION POPUP Обработчик «отправки» формы
-function formSubmitHandler(evt) {
+const formSubmitHandler = (evt) => {
   // *SECTION POPUP Отменяем стандартную отправку формы
   evt.preventDefault();
 
@@ -45,48 +85,41 @@ function formSubmitHandler(evt) {
   // *SECTION POPUP Выбираем и вставлям новые значения полей
   titleName.textContent = nameValue;
   titleJob.textContent = jobeValue;
-  // *SECTION POPUP Дублируем fade out animation на Submit закрытие
-  popup.setAttribute("closing", "");
-  popup.addEventListener('animationend', () => {
-    popup.removeAttribute("closing");
-    togglePopup();
-  }, { once: true });
+
+  closePopup(popupProfile)
 }
 
-// *SECTION POPUP Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
-
-// *SECTION ELEMENT Находим лайк
-const likeButton = document.querySelector('.element__like-button');
 // *SECTION ELEMENT Делаем лайк кликабельным
-likeButton.addEventListener('click', () => {
+const toggleLikeButton = () => {
   likeButton.classList.toggle('element__like-button_active');
+}
+
+function addCard(imgValue, titleValue) {
+  const template = document.querySelector('.element-template').content;
+  const elementTemplate = template.querySelector('.element').cloneNode(true);
+
+  const imgEL = elementTemplate.querySelector('.element__photo');
+  const titleEl = elementTemplate.querySelector('.element__title');
+
+  imgEL.src = imgValue
+  titleEl.textContent = imgValue
+}
+
+
+
+openButton.addEventListener('click', () => {
+  openPopup(popupProfile)
+})
+cardOpenButton.addEventListener('click', () => {
+  openPopup(popupCard)
 })
 
-likeButton.addEventListener('click', likeButton);
+buttonCloseProfile.addEventListener('click', () => {
+  closePopup(popupProfile)
+})
+buttonCloseCard.addEventListener('click', () => {
+  closePopup(popupCard)
+})
 
-// *SECTION CARD Находим карточки и кнопки
-const card = document.querySelector('.card');
-const cardOpenButton = document.querySelector('.profile__add-button');
-const cardCloseButton = document.querySelector('.card__close-icon');
-
-// *SECTION CARD Открываем и закрваем карточки (заносим данные из профиля) 
-const toggleCard = () => {
-  if (card.classList.contains('card_opened')) {
-    false;
-  }
-  card.classList.toggle('card_opened');
-}
-
-cardOpenButton.addEventListener('click', toggleCard);
-
-// *SECTION CARD Добовляем fade out animation на закрытие card
-cardCloseButton.addEventListener('click', () => {
-  card.setAttribute("closing", "");
-
-  card.addEventListener('animationend', () => {
-    card.removeAttribute("closing");
-    toggleCard();
-  }, { once: true });
-});
+formElement.addEventListener('submit', formSubmitHandler);
+likeButton.addEventListener('click', toggleLikeButton);

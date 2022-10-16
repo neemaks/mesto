@@ -28,7 +28,8 @@
       <button type="button" class="profile__add-button" aria-label="добовление новой карточки/места"></button>
     </section>
 
-    <section class="elements" aria-label="Карточки с местами">
+
+    <!-- <section class="elements" aria-label="Карточки с местами">
       <article class="element">
         <button type="button" class="element__trash" aria-label="Удаление карточки"></button>
         <img class="element__photo" src="./images/photoGridCarachaevsk.png" alt="старое заброшенное здание в горах">
@@ -77,14 +78,14 @@
           <button type="button" class="element__like-button" aria-label="включение/выключение лайка"></button>
         </div>
       </article>
-    </section>
+    </section> -->
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup" aria-label="всплывающее окно">
+  <div class="popup popup_type_profile" aria-label="всплывающее окно">
     <div class="popup__container">
       <form name="editForm" class="popup__form">
         <h3 class="popup__headline">Редактировать профиль</h3>
@@ -92,21 +93,40 @@
         <input class="popup__input popup__input_type_job" name="job" type="text" placeholder="Профессия" required>
         <button class="popup__submit" type="submit">Сохранить</button>
       </form>
-      <button type="button" class="popup__close-icon" aria-label="закрытие попапа"></button>
+      <button type="button" class="popup__close-icon popup__close-icon_type_profile" aria-label="закрытие попапа"></button>
     </div>
   </div>
 
-  <div class="card" aria-label="всплывающее окно карточки">
-    <div class="card__container">
-      <form name="editCardForm" class="card__form">
-        <h3 class="card__headline">Новое место</h3>
-        <input class="card__input card__input_type_name" name="name" type="text" placeholder="Название" required>
-        <input class="card__input card__input_type_job" name="link" type="text" placeholder="Ссылка на картинку" required>
-        <button class="card__submit" type="submit">Создать</button>
+  <div class="popup popup_type_card" aria-label="всплывающее окно карточки">
+    <div class="popup__container">
+      <form name="editCardForm" class="popup__form">
+        <h3 class="popup__headline">Новое место</h3>
+        <input class="popup__input" name="name" type="text" placeholder="Название" required>
+        <input class="popup__input" name="link" type="text" placeholder="Ссылка на картинку" required>
+        <button class="popup__submit" type="submit">Создать</button>
       </form>
-      <button type="button" class="card__close-icon" aria-label="закрытие окна карточки"></button>
+      <button type="button" class="popup__close-icon popup__close-icon_type_card" aria-label="закрытие окна карточки"></button>
     </div>
   </div>
+
+  <!-- <div class="popup-image">
+    <div class="popup-image__container">
+        <button class="popup-image__close-icon" type="reset"></button>
+        <img class="popup-image__image popup-image__image-link" src="./images/photoGridCarachaevsk.png" alt="">
+        <p class="popup-image__title popup-image__title-image">Карачаевск</p>
+    </div>
+</div> -->
+
+  <template class="element-template">
+    <div class="element">
+      <button type="button" class="element__trash" aria-label="Удаление карточки"></button>
+      <img class="element__photo" src="" alt="">
+      <div class="element__group">
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like-button" aria-label="включение/выключение лайка"></button>
+      </div>
+    </div>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
