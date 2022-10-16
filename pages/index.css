@@ -44,12 +44,8 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 
-/* card */
-@import url(../blocks/card/card.css);
-@import url(../blocks/card/_opened/card_opened.css);
-@import url(../blocks/card/__container/card__container.css);
-@import url(../blocks/card/__form/card__form.css);
-@import url(../blocks/card/__close-icon/card__close-icon.css);
-@import url(../blocks/card/__headline/card__headline.css);
-@import url(../blocks/card/__input/card__input.css);
-@import url(../blocks/card/__submit/card__submit.css);
+/* popup__image */
+@import url(../blocks/popup/__caption/popup__caption.css);
+@import url(../blocks/popup/__figure/popup__figure.css);
+@import url(../blocks/popup/__wrapper/popup__wrapper.css);
+@import url(../blocks/popup/__image/popup__image.css);
