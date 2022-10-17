@@ -32,7 +32,7 @@ const elementContainer = document.querySelector('.elements');
 const popupProfile = document.querySelector('.popup_type_profile');
 const formProfile = document.querySelector('.popup__form_type_profile');
 const buttonOpenProfile = document.querySelector('.profile__edit-button');
-const buttonCloseProfile = document.querySelector('.popup__close-icon_type_profile');
+const closeButtons = document.querySelectorAll('.popup__close-icon');
 const inputNameProfile = document.querySelector('.popup__input_type_profile-name');
 const inputJobProfile = document.querySelector('.popup__input_type_profile-job');
 
@@ -43,17 +43,19 @@ const titleJob = document.querySelector('.profile__subtitle');
 const popupCard = document.querySelector('.popup_type_card');
 const formCard = document.querySelector('.popup__form_type_card');
 const buttonOpenCard = document.querySelector('.profile__add-button');
-const buttonCloseCard = document.querySelector('.popup__close-icon_type_card');
 
 const inputNameCard = document.querySelector('.popup__input_type_card-name');
 const inputLinkCard = document.querySelector('.popup__input_type_card-link');
 
 // Попап картинки
 const popupImage = document.querySelector('.popup_type_image');
-const buttonCloseImage = document.querySelector('.popup__close-icon_type_image');
+const popupImg = popupImage.querySelector('.popup__image');
+const popupCaption = popupImage.querySelector('.popup__caption');
 
-// Находим лайк
+// Template
+const template = document.querySelector('.element-template').content;
 const likeButton = document.querySelector('.element__like-button');
+
 
 
 // Открываем и закрываем Попап
@@ -65,9 +67,15 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 }
 
+// Закрываем ближайший popup__close-icon
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
 
 // Попап обработчик «отправки» формы
-const formSubmitHandlerProfile = (evt) => {
+const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
 
   const nameValue = inputNameProfile.value;
@@ -80,7 +88,7 @@ const formSubmitHandlerProfile = (evt) => {
 }
 
 // Попап карточек вносим данные
-const formSubmitHandlerCard = (evt) => {
+const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
   const elemData = {
@@ -88,18 +96,16 @@ const formSubmitHandlerCard = (evt) => {
     link: inputLinkCard.value
   }
 
-  const newCard = getCard(elemData)
-  elementContainer.prepend(newCard)
+  const newCard = getCard(elemData);
+  elementContainer.prepend(newCard);
 
-  inputNameCard.value = '';
-  inputLinkCard.value = '';
+  evt.target.reset();
 
   closePopup(popupCard);
 }
 
 // Темплейт 
 const getCard = (elemData) => {
-  const template = document.querySelector('.element-template').content;
   const elementTemplate = template.querySelector('.element').cloneNode(true);
 
   const imgEl = elementTemplate.querySelector('.element__photo');
@@ -118,14 +124,11 @@ const getCard = (elemData) => {
 
   const buttonTrash = elementTemplate.querySelector('.element__trash');
   buttonTrash.addEventListener('click', (evt) => {
-    evt.target.parentElement.remove();
+    evt.target.closest('.element').remove();
   })
 
   imgEl.addEventListener('click', () => {
     openPopup(popupImage)
-
-    const popupImg = popupImage.querySelector('.popup__image');
-    const popupCaption = popupImage.querySelector('.popup__caption');
 
     popupImg.src = elemData.link;
     popupImg.alt = elemData.name;
@@ -142,7 +145,6 @@ const addCard = () => {
   elementContainer.append(...newCard);
 }
 
-
 buttonOpenProfile.addEventListener('click', () => {
   openPopup(popupProfile);
 
@@ -154,22 +156,11 @@ buttonOpenCard.addEventListener('click', () => {
   openPopup(popupCard);
 })
 
-buttonCloseProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
-})
-
-buttonCloseCard.addEventListener('click', () => {
-  closePopup(popupCard);
-})
-buttonCloseImage.addEventListener('click', () => {
-  closePopup(popupImage);
-})
-
 formProfile.addEventListener('submit', (evt) => {
-  formSubmitHandlerProfile(evt)
+  handleProfileFormSubmit(evt)
 });
 formCard.addEventListener('submit', (evt) => {
-  formSubmitHandlerCard(evt)
+  handleCardFormSubmit(evt)
 });
 
 addCard();
