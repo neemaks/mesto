@@ -29,3 +29,7 @@
     line-height: 17px;
   }
 }
+
+.popup__submit:invalid {
+  background-color: #E5E5E5;
+}

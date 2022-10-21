@@ -37,25 +37,28 @@
 
   <div class="popup popup_type_profile" aria-label="всплывающее окно">
     <div class="popup__container">
-      <form name="editForm" class="popup__form popup__form_type_profile">
+       <form name="editForm" class="popup__form popup__form_type_profile" novalidate>
         <h3 class="popup__headline">Редактировать профиль</h3>
-        <input class="popup__input popup__input_type_profile-name" name="name" type="text" placeholder="Имя" required>
-        <input class="popup__input popup__input_type_profile-job" name="job" type="text" placeholder="Профессия"
-          required>
+        <input class="popup__input popup__input_type_profile-name" id="name" name="name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
+        <span id="name-error" class="popup__error popup__error_type_name popup__error_type_top">Lorem ipsum dolor sit amet.</span>
+        <input class="popup__input popup__input_type_profile-job" id="job" name="job" type="text" minlength="2" maxlength="200" placeholder="Профессия" required>
+        <span id="job-error" class="popup__error popup__error_type_job popup__error_type_buttom">Lorem ipsum dolor sit amet.</span>
         <button class="popup__submit popup__submit_type_profile" type="submit">Сохранить</button>
+        
       </form>
       <button type="button" class="popup__close-icon popup__close-icon_type_profile"
         aria-label="закрытие попапа"></button>
     </div>
   </div>
 
-  <div class="popup popup_type_card" aria-label="всплывающее окно карточки">
+  <div class="popup popup_type_card" aria-label="всплывающее окно карточки" novalidate>
     <div class="popup__container">
       <form name="editCardForm" class="popup__form popup__form_type_card">
         <h3 class="popup__headline">Новое место</h3>
-        <input class="popup__input popup__input_type_card-name" name="name" type="text" placeholder="Название" required>
-        <input class="popup__input popup__input_type_card-link" name="link" type="text" placeholder="Ссылка на картинку"
-          required>
+        <input class="popup__input popup__input_type_card-name" id="name-card" name="name-card" type="text" placeholder="Название" required>
+        <span id="name-card-error" class="popup__error popup__error_type_name popup__error_type_top">Lorem ipsum dolor sit amet.</span>
+        <input class="popup__input popup__input_type_card-link" id="link" name="link" type="url" minlength="5" placeholder="Ссылка на картинку" required>
+        <span id="link-error" class="popup__error popup__error_type_job popup__error_type_buttom">Lorem ipsum dolor sit amet.</span>
         <button class="popup__submit popup__submit_type_card" type="submit">Создать</button>
       </form>
       <button type="button" class="popup__close-icon popup__close-icon_type_card"
