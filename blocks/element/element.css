@@ -3,7 +3,7 @@
   max-height: 361px;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  background-color: #fff;
+  background-color: #000;
   border-radius: 10px 10px 10px 10px;
   position: relative;
 }

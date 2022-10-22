@@ -55,7 +55,6 @@ const popupCaption = popupImage.querySelector('.popup__caption');
 
 // Template
 const template = document.querySelector('.element-template').content;
-const likeButton = document.querySelector('.element__like-button');
 
 // Открываем и закрываем Попап
 const openPopup = (popup) => {
@@ -68,27 +67,19 @@ const closePopup = (popup) => {
   document.removeEventListener('keydown', closeByEsc);
 }
 
-// Слушатель на попап для закрытия по клику
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    closeByClick(evt, popup);
-  });
-});
-
 // Закрытие клавишей Еск
 const closeByEsc = (evt) => {
-  const currentPopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
-    formCard.reset();
   }
 }
 
 // Закрытие попап на клик
-const closeByClick = (evt, popupType) => {
-  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-icon')) {
-    closePopup(popupType);
-    formCard.reset();
+const closeByClick = (evt) => {
+  const currentPopup = evt.currentTarget;
+  if (evt.target === currentPopup || evt.target.classList.contains('popup__close-icon')) {
+    closePopup(currentPopup);
   }
 }
 
@@ -117,31 +108,29 @@ const handleCardFormSubmit = (evt) => {
   const newCard = getCard(elemData);
   elementContainer.prepend(newCard);
 
-  formCard.reset();
-
   closePopup(popupCard);
 }
 
 // Темплейт 
 const getCard = (elemData) => {
-  const elementTemplate = template.querySelector('.element').cloneNode(true);
-  const imgEl = elementTemplate.querySelector('.element__photo');
-  const titleEl = elementTemplate.querySelector('.element__title');
+  const newCard = template.querySelector('.element').cloneNode(true);
+  const imgEl = newCard.querySelector('.element__photo');
+  const titleEl = newCard.querySelector('.element__title');
 
   imgEl.src = elemData.link;
   imgEl.alt = `место ${elemData.name}`;
   titleEl.textContent = elemData.name;
 
   // Тогл лайка
-  const buttonLike = elementTemplate.querySelector('.element__like-button');
+  const buttonLike = newCard.querySelector('.element__like-button');
   buttonLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__like-button_active');
   });
 
   // Удаление карточки по корзине
-  const buttonTrash = elementTemplate.querySelector('.element__trash');
-  buttonTrash.addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
+  const buttonTrash = newCard.querySelector('.element__trash');
+  buttonTrash.addEventListener('click', () => {
+    newCard.remove();
   })
 
   // Открытие попап фото по клику 
@@ -149,19 +138,26 @@ const getCard = (elemData) => {
     openPopup(popupImage);
 
     popupImg.src = elemData.link;
-    popupImg.alt = elemData.name;
+    popupImg.alt = `место ${elemData.name}`;
 
     popupCaption.textContent = elemData.name;
   });
 
-  return elementTemplate;
+  return newCard;
 }
 
 // Добовляем в контейнер
-const addCard = () => {
+const addInitialCards = () => {
   const newCard = initialCards.map(getCard);
   elementContainer.append(...newCard);
 }
+
+// Слушатель на попап для закрытия по клику
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    closeByClick(evt);
+  });
+});
 
 // Слушатель открытия попапа с текстовой формой
 buttonOpenProfile.addEventListener('click', () => {
@@ -175,18 +171,15 @@ buttonOpenProfile.addEventListener('click', () => {
 
 // Слушатель на открытие попапа карт
 buttonOpenCard.addEventListener('click', () => {
+  formCard.reset();
   openPopup(popupCard);
   checkBtnStateOpenPopup(popupCard, validationConfig);
 })
 
 // Слушатель на сабмит профайла
-formProfile.addEventListener('submit', (evt) => {
-  handleProfileFormSubmit(evt);
-});
+formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 // Слушатель на сабмит карты
-formCard.addEventListener('submit', (evt) => {
-  handleCardFormSubmit(evt);
-});
+formCard.addEventListener('submit', handleCardFormSubmit);
 
-addCard();
+addInitialCards();

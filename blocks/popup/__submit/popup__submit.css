@@ -5,8 +5,7 @@
   padding: 0;
   background-color: #000;
   border-radius: 2px;
-  border: none;
-  text-decoration: none;
+  border: 1px solid #000;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -18,7 +17,7 @@
 }
 
 .popup__submit:hover {
-  opacity: .6;
+  opacity: .8;
 }
 
 @media screen and (max-width: 767px) {
@@ -28,8 +27,4 @@
     font-size: 14px;
     line-height: 17px;
   }
-}
-
-.popup__submit:invalid {
-  background-color: #E5E5E5;
 }
