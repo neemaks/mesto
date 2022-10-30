@@ -1,9 +1,11 @@
-import { popupImage, openPopup } from './index.js';
+import { popupImage, imagePopupCard, imagePopupCaption, openPopup } from './index.js';
 
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._image = data.image;
+    this._like = data.like;
     this._templateSelector = templateSelector;
   }
 
@@ -18,25 +20,23 @@ export default class Card {
   }
 
   _handleLikeToggle() {
-    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._like.classList.toggle('element__like-button_active');
   }
 
   _handlebuttonTrash() {
     this._element.remove();
+    this._element = null;
   }
 
   _handlePopupImage() {
-    const popupImg = popupImage.querySelector('.popup__image');
-    const popupCaption = popupImage.querySelector('.popup__caption');
-
-    popupImg.src = this._link;
-    popupImg.alt = `место ${this._name}`;
-
-    popupCaption.textContent = this._name;
+    imagePopupCard.src = this._link;
+    imagePopupCard.alt = `место ${this._name}`;
+    imagePopupCaption.textContent = this._name;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+    this._like = this._element.querySelector('.element__like-button');
+    this._like.addEventListener('click', () => {
       this._handleLikeToggle();
     });
 
@@ -44,7 +44,7 @@ export default class Card {
       this._handlebuttonTrash();
     });
 
-    this._element.querySelector('.element__photo').addEventListener('click', () => {
+    this._image.addEventListener('click', () => {
       openPopup(popupImage);
       this._handlePopupImage();
     });
@@ -52,11 +52,11 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    const imgEl = this._element.querySelector('.element__photo');
+    this._image = this._element.querySelector('.element__photo');
     const titleEl = this._element.querySelector('.element__title');
 
-    imgEl.src = this._link;
-    imgEl.alt = `место ${this._name}`;
+    this._image.src = this._link;
+    this._image.alt = `место ${this._name}`;
     titleEl.textContent = this._name;
 
     this._setEventListeners();

@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-export { popupImage, openPopup };
+export { popupImage, imagePopupCard, imagePopupCaption, openPopup };
 
 // Карточки при загрузке
 const initialCards = [
@@ -71,6 +71,8 @@ const inputLinkCard = document.querySelector('.popup__input_type_card-link');
 
 // Попап картинки карточки
 const popupImage = document.querySelector('.popup_type_image');
+const imagePopupCard = popupImage.querySelector('.popup__image');
+const imagePopupCaption = popupImage.querySelector('.popup__caption');
 
 
 // Открываем и закрываем Попапы (плюс слушатель на клавишу ESC)
@@ -122,18 +124,22 @@ const handleCardFormSubmit = (evt) => {
     link: inputLinkCard.value
   };
 
-  // Карточка из класса Card
-  const newCard = new Card(elemData, '.element-template').generateCard();
-  elementContainer.prepend(newCard);
-
+  addCards(elemData, '.element-template');
   closePopup(popupCard);
 }
 
-// Добавляем в контейнер карточек при загрузке
+// Функция добавления карточки
+const addCards = (item, selector) => {
+  const newCard = new Card(item, selector).generateCard();
+  elementContainer.prepend(newCard);
+
+  return newCard;
+};
+
+// Добавляем в контейнер карточки при загрузке
 const addInitialCards = () => {
   initialCards.map((item) => {
-    const newCard = new Card(item, '.element-template').generateCard();
-    elementContainer.append(newCard);
+    addCards(item, '.element-template');
   });
 }
 
