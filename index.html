@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Четвертая проектная работа">
+  <meta name="description" content="Восьмая проектная работа">
   <meta name="keywords" content="Место">
   <meta name="author" content="Максим Михайлов">
   <link rel="stylesheet" href="./pages/index.css">
@@ -56,8 +56,8 @@
     <div class="popup__container">
       <form name="editCardForm" class="popup__form popup__form_type_card" novalidate>
         <h2 class="popup__headline">Новое место</h2>
-        <input class="popup__input popup__input_type_card-name" id="name-card" name="name-card" type="text"
-          minlength="2" maxlength="30" placeholder="Название" required>
+        <input class="popup__input popup__input_type_card-name" id="name-card" name="name" type="text" minlength="2"
+          maxlength="30" placeholder="Название" required>
         <span id="name-card-error" class="popup__error popup__error_type_name-card popup__error_type_top"></span>
         <input class="popup__input popup__input_type_card-link" id="link" name="link" type="url"
           placeholder="Ссылка на картинку" required>
@@ -80,17 +80,17 @@
   </div>
 
   <template class="element-template">
-    <div class="element">
+    <article class="element">
       <button type="button" class="element__trash" aria-label="Удаление карточки"></button>
       <img class="element__photo" src="#" alt="#">
       <div class="element__group">
         <h2 class="element__title"></h2>
         <button type="button" class="element__like-button" aria-label="включение/выключение лайка"></button>
-      </div>
+    </article>
     </div>
   </template>
 
-  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
