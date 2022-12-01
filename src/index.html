@@ -7,18 +7,17 @@
   <meta name="description" content="Восьмая проектная работа">
   <meta name="keywords" content="Место">
   <meta name="author" content="Максим Михайлов">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/header-logo.svg" alt="латинскими буквами Mesto Russia">
+    <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="латинскими буквами Mesto Russia">
   </header>
   <main class="content">
 
     <section class="profile" aria-label="Профиль страницы">
-      <img class="profile__avatar" src="./images/JacquesCousteau-userpic.png" alt="Жак-Ив Кусто">
+      <img class="profile__avatar" src="<%=require('./images/JacquesCousteau-userpic.png')%>" alt="Жак-Ив Кусто">
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button"
@@ -90,7 +89,6 @@
     </article>
   </template>
 
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>

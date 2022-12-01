@@ -1,11 +1,19 @@
-import { initialCards, validationConfig } from '../scripts/utils/constants.js';
+import './index.css';
+
+import { 
+  initialCards, 
+  validationConfig,
+  elementContainer,
+  buttonOpenCard,
+  buttonOpenProfile,
+  inputNameProfile,
+  inputJobProfile } from '../scripts/utils/constants.js';
 import Card from '../scripts/comnponents/Card.js';
 import Section from '../scripts/comnponents/Section.js';
 import FormValidator from '../scripts/comnponents/FormValidator.js';
 import PopupWithImage from '../scripts/comnponents/PopupWithImage.js';
 import PopupWithForm from '../scripts/comnponents/PopupWithForm.js';
 import UserInfo from '../scripts/comnponents/UserInfo.js';
-const elementContainer = document.querySelector('.elements');
 const popupImage = new PopupWithImage('.popup_type_image');
 
 const addInitialCards = new Section({
@@ -53,16 +61,6 @@ formProfileValidator.enableValidation();
 const formProfileCard = new FormValidator(validationConfig, '.popup__form_type_card');
 formProfileCard.enableValidation();
 
-
-const inputNameProfile = document
-  .querySelector('.popup__form_type_profile')
-  .querySelector('.popup__input_type_profile-name');
-
-const inputJobProfile = document
-  .querySelector('.popup__form_type_profile')
-  .querySelector('.popup__input_type_profile-job');
-
-const buttonOpenProfile = document.querySelector('.profile__edit-button');
 buttonOpenProfile.addEventListener("click", () => {
   const getUserInfo = userInfo.getUserInfo();
   inputNameProfile.value = getUserInfo.name;
@@ -71,7 +69,6 @@ buttonOpenProfile.addEventListener("click", () => {
   formProfileValidator.checkBtnStateOpenPopup();
 });
 
-const buttonOpenCard = document.querySelector('.profile__add-button');
 buttonOpenCard.addEventListener("click", () => {
   popupMesto.open();
   formProfileCard.checkBtnStateOpenPopup();
