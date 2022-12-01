@@ -15,13 +15,13 @@ export default class Card {
     return cardElement;
   }
 
-  _getLikeElement() {
+  _toggleLike() {
     this._element
       .querySelector('.element__like-button')
       .classList.toggle('element__like-button_active');
   }
 
-  _getRemoveElement() {
+  _removeElement() {
     this._element.remove();
   }
 
@@ -34,11 +34,11 @@ export default class Card {
 
     this._element
       .querySelector('.element__like-button')
-      .addEventListener('click', () => this._getLikeElement());
+      .addEventListener('click', () => this._toggleLike());
 
     this._element
       .querySelector('.element__trash')
-      .addEventListener('click', () => this._getRemoveElement());
+      .addEventListener('click', () => this._removeElement());
   }
 
   generateCard() {
